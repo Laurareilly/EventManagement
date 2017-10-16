@@ -1,0 +1,4 @@
+﻿  main.cpp
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall Event::Event(void)" (??0Event@@QAE@XZ) referenced in function "public: __thiscall PrintGoodbyeEvent::PrintGoodbyeEvent(void)" (??0PrintGoodbyeEvent@@QAE@XZ)
+main.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall Event::~Event(void)" (??1Event@@UAE@XZ) referenced in function "public: virtual __thiscall PrintGoodbyeEvent::~PrintGoodbyeEvent(void)" (??1PrintGoodbyeEvent@@UAE@XZ)
+C:\Users\laura.reilly\Desktop\LauraReilly\EventSystem\Debug\Multithreading.exe : fatal error LNK1120: 2 unresolved externals
