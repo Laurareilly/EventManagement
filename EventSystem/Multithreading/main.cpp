@@ -23,46 +23,20 @@ void printGoodbyeWorld()
 	cout << "Good bye world ";
 }
 
-//int helloThreadLaunch(void *params)
-//{
-//	EventManager *eMgrPtr = (EventManager *)params;
-//	while (1)
-//	{
-//		PrintHelloEvent *e = new PrintHelloEvent;
-//		eMgrPtr->AddEvent(e);
-//	}
-//
-//	return 0;
-//}
-//
-//int goodbyeThreadLaunch(void *params)
-//{
-//
-//	EventManager *eMgrPtr = (EventManager *)params;
-//	while (1)
-//	{
-//		PrintGoodbyeEvent *e = new PrintGoodbyeEvent;
-//		eMgrPtr->AddEvent(e);
-//	}
-//	return 0;
-//}
-
-
 
 int main()
 {
-	//EventManager::InitInstance();
+	EventManager::InitInstance();
 
 
-	//PrintGoodbyeEvent *e = new PrintGoodbyeEvent;
-	//EventManager::mpInstance->AddEvent(e);
+	PrintGoodbyeEvent *e = new PrintGoodbyeEvent;
+	EventManager::mpInstance->AddEvent(e);
 
-	//EventManager::GetInstance()->ExecuteAll();
+	PrintHelloEvent *hello = new PrintHelloEvent;
+	EventManager::mpInstance->AddEvent(hello);
 
 
-
-	Queue<int> myQueue;
-	myQueue.enqueue(5);
+	EventManager::GetInstance()->ExecuteAll();
 
 	cin.ignore();
 	cin.get();
