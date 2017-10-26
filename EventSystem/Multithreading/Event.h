@@ -1,12 +1,13 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+#include "Queue.h"
 
 class Event
 {
 public:
-	Event();
-	virtual ~Event();
+	Event() {};
+	virtual ~Event() {};
 
 	virtual int Execute() = 0;
 
@@ -30,13 +31,12 @@ public:
 		return mpInstance;;
 	}
 
-	EventManager() { queue = new Event*; }
-	~EventManager() { delete queue; queue = nullptr; };
+	EventManager() { }
+	~EventManager() { };
 
 	int AddEvent(Event *e)
 	{
-		queue[mNumEvents] = e;
-		++mNumEvents;
+		eventQueue.enqueue(e);
 		return 0;
 	}
 
@@ -44,30 +44,18 @@ public:
 	{
 		Event* tmpEvent;
 
-		while (mNumEvents > 0)
+		while (eventQueue.getAmountInQueue() > 0)
 		{
-			tmpEvent = queue[0];
+			tmpEvent = eventQueue.dequeue();
 			tmpEvent->Execute();
-			//pop the first thing out of the queue
 			delete tmpEvent;
 		}
-
 		return 0;
 	}
 
-private:
 	static EventManager *mpInstance;
-	Event **queue;
-	int mNumEvents;
-	void pop()
-	{
-		for (int i = 0; i < mNumEvents - 1; ++i)
-		{
-			queue[i] = queue[i + 1];
-		}
-		delete queue[mNumEvents];
-		--mNumEvents;
-	}
+private:
+	Queue<Event*> eventQueue;
 };
 
 #endif	
